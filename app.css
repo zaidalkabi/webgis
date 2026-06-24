@@ -1,0 +1,337 @@
+/* --- Core Variables & Design System --- */
+:root {
+    --bg-primary: #1e293b;
+    --bg-secondary: #0f172a;
+    --bg-sidebar: #ffffff;
+    --text-main: #334155;
+    --text-muted: #64748b;
+    --accent-color: #2563eb;
+    --accent-hover: #1d4ed8;
+    --border-color: #e2e8f0;
+    --header-height: 56px;
+    --sidebar-width: 380px;
+    --font-stack: 'Inter', sans-serif;
+}
+
+/* RTL Override Variables */
+html[dir="rtl"] {
+    --font-stack: 'Cairo', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: var(--bg-secondary);
+    color: var(--text-main);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* --- Layout Architecture --- */
+.app-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+.app-header {
+    height: var(--header-height);
+    background-color: var(--bg-secondary);
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    border-bottom: 1px solid #1e293b;
+    z-index: 1001;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.header-logo i {
+    color: #60a5fa;
+}
+
+.workbench-viewport {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - var(--header-height));
+    position: relative;
+    width: 100vw;
+}
+
+/* --- Sidebar System --- */
+.sidebar-wrapper {
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: row;
+    z-index: 1000;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+    height: 100%;
+}
+
+html[dir="rtl"] .sidebar-wrapper {
+    border-right: none;
+    border-left: 1px solid var(--border-color);
+    box-shadow: -2px 0 8px rgba(0,0,0,0.05);
+}
+
+.sidebar-tabs {
+    width: 70px;
+    background-color: #f8fafc;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+    gap: 0.5rem;
+}
+
+html[dir="rtl"] .sidebar-tabs {
+    border-right: none;
+    border-left: 1px solid var(--border-color);
+}
+
+.tab-btn {
+    width: 54px;
+    height: 54px;
+    border: none;
+    background: none;
+    border-radius: 8px;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.tab-btn i {
+    font-size: 1.2rem;
+}
+
+.tab-btn span {
+    font-size: 0.65rem;
+    font-weight: 500;
+}
+
+.tab-btn:hover {
+    background-color: #e2e8f0;
+    color: var(--text-main);
+}
+
+.tab-btn.active {
+    background-color: var(--accent-color);
+    color: #ffffff;
+}
+
+.sidebar-body {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    background-color: #ffffff;
+    height: 100%;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+.tab-panel h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--bg-secondary);
+}
+
+.panel-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+/* --- UI Component Elements --- */
+.tool-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tool-section label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: border-color 0.15s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* --- Buttons System --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn-secondary {
+    background-color: #334155;
+    color: #ffffff;
+}
+
+.btn-secondary:hover {
+    background-color: #475569;
+}
+
+.w-100 { width: 100%; }
+.mt-3 { margin-top: 1rem; }
+
+/* --- Drag & Drop Ingestion Zone --- */
+.drop-zone {
+    border: 2px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.drop-zone:hover, .drop-zone.dragover {
+    border-color: var(--accent-color);
+    background-color: #eff6ff;
+}
+
+.drop-icon {
+    font-size: 2.5rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.file-formats {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+}
+
+.placeholder-msg {
+    border: 1px dashed var(--border-color);
+    padding: 1rem;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background-color: #fafafa;
+}
+
+/* --- Map Viewport Canvas Fix --- */
+.map-viewport {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    background-color: #e2e8f0;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Leaflet Layout Control Fixes for Arabic RTL --- */
+html[dir="rtl"] .leaflet-right {
+    right: auto;
+    left: 10px;
+}
+html[dir="rtl"] .leaflet-left {
+    left: auto;
+    right: 10px;
+}
+html[dir="rtl"] .leaflet-control-layers-toggle {
+    background-position: center;
+}
+
+/* --- Modal Architecture Layer Overlay --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-box {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 480px;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+}
+
+.modal-box h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--bg-secondary);
+    margin-bottom: 0.5rem;
+}
